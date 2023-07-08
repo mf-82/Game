@@ -1,0 +1,123 @@
+
+body {
+    background-color: orange ;
+}
+
+.gameContainer {
+    border: 10px grey solid;
+}
+
+.house {
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0px 0px 0px 10px black;
+    width: 100px;
+    height: 100px;
+}
+
+.house:before {
+    display: block;
+    position: absolute;
+    border-top:10px solid white;
+    border-bottom:10px solid white;
+    height:calc(100% - 5px);
+    top:0;
+    width: calc(100% - 5px);
+    left:18px;
+ }
+ .house:after {
+    display: block;
+    position: absolute;
+    content:'';
+    border-right:10px solid white;
+    border-left:10px solid white;
+    height:calc(100% - 5px);
+    width: calc(100% - 5px);
+    top:18px;
+    left: 0;
+ }
+
+/*
+main {
+    max-width: 70%;
+    text-align: center;
+    align-self: center;
+}
+
+.soundBoard {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+    .soundBoard {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.sbItem {
+    border: 2px solid grey;
+    min-width: 100px;
+    min-height: 100px;
+    
+}
+
+.sbItem a {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.sbItem a:hover {
+    color: orange;
+}
+
+.song {
+    text-decoration: none;
+    text-align: center;
+    line-height: 100px;
+}
+
+.dpHead {
+    background-image: url("../images/head.gif");
+    background-size: cover;
+    animation: shake 1s forwards infinite;
+
+}
+
+.dpHead a {
+    animation: blink 0.5s forwards infinite;
+}
+
+@keyframes blink {
+    0% {
+        color: blue;
+    }
+    33% {
+        color: purple;
+    }
+    66% {
+        color: goldenrod;
+    }
+    100% {
+        color: red;
+    }
+}
+
+@keyframes shake {
+    0% {
+        background-position: 50% 50%;
+    }
+    33% {
+        background-position: 50% 40%;
+    }
+    66% {
+        background-position: 40% 40%;
+    }
+    100% {
+        background-position: 50% 50%;
+    }
+} */
