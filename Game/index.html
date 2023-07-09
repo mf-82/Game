@@ -2,21 +2,95 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Daft Punk - HTML5 Audio</title>
+  <title>Houses</title>
   <link href="http://fonts.googleapis.com/css?family=Exo+2:400,300,200,900,700,600,500" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body>
   <header>
-    <h1 id="gameName">Houses</h1>
+    
+    <!-- <div class="scoreBoard"> -->
+      <div class="playerHouses">
+        <h2>Player 1 Houses:</h2>
+        <div class="houseCount" id="p1Hcount"></div>
+      </div>
+      <h1 id="gameName">Houses</h1>
+      <div class="playerHouses">
+        <h2>Player 2 Houses:</h2>
+        <div class="houseCount" id="p2Hcount"></div>
+      </div>
+    <!-- </div> -->
   </header>
   <main>
     <div id="gameContainer">
-      <div class="house">
-        
+      <div class="leftHouseLand topRowHouseLand">
+        <div class="dot"></div>
+        <div class="wall hWall" data-col="1 2" data-row="1"></div>
+        <div class="dot"></div>
+        <div class="wall vWall"></div>
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="dot"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand topRowHouseLand">
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand topRowHouseLand">
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="leftHouseLand otherRowHouseLand">
+        <div class="wall vWall"></div>
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="dot"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand otherRowHouseLand">
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand otherRowHouseLand">
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="leftHouseLand otherRowHouseLand">
+        <div class="wall vWall"></div>
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="dot"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand otherRowHouseLand">
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="otherHouseLand otherRowHouseLand">
+        <div class="house"></div>
+        <div class="wall vWall"></div>
+        <div class="wall hWall"></div>
+        <div class="dot"></div>
       </div>
     </div>
-    
   </main>
   
   <script src="scripts/logic.js"></script>
