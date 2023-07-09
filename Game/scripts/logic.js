@@ -1,40 +1,159 @@
 let player = 1;
+let anotherTurn = false;
+
+// number of houses built
+let housesbuilt = 0;
 
 function buildWall (e) {
     // e.preventDefault();
     console.log("built");
-    console.log(e);
+    // console.log(e);
+    // get all the class list of the border
     const border = this.classList;
+    //convert the data-column into an array
+    const borderCol = Array.from(this.dataset.col);
+
+    // convert the data-row into an array
+    const borderRow = Array.from(this.dataset.row);
+    
+    //get all the houses
     const houses = document.getElementsByClassName("house");
-    console.log(border);
-    // add player class to wall remove wall class to stop hover
+    // console.log(border);
+
+    // if player is 1add player class to wall remove wall class to stop hover
     if (player===1) {
       border.add("p1Wall");
       border.add("builtWall");
       border.remove("wall");
       this.removeEventListener("click", buildWall);
-      player = 2;
-      console.log(border);
-      console.log("player: "+player);
-      // if house class contains both border col and row
-      for (c=0; c<border.data-col.length;i++) {
-        for (h=0; h < houses.length; i++) {
-          const house = houses[h].classList;
-          for (r=0; r<border.data-row.length;r++) {
-        if (house.contains === border.data-col[c] && house.contains === border.data-row[r]){
-          
+      
+      // check each house to see if one of its borders has been closed
+      for (let h=0; h < houses.length; h++) {
+        const houseCol = houses[h].dataset.col;
+        // console.log(`house ${h} column is: ${houseCol}`);
+        const houseRow = houses[h].dataset.row;
+        // console.log(`house ${h} row is: ${houseRow}`);
+        // console.log(`house ${h} has ${houses[h].dataset.walls} walls built`);
+        // console.log(h);
+        // console.log(borderCol.length);
+
+        // get the number of walls each house has built
+        let houseWalls = Number(houses[h].dataset.walls);
+
+        // go through all the columns the border belongs to
+        for (let c=0; c < borderCol.length; c++) {
+          // console.log(c);
+
+          //go through all the rows the border belongs to
+          for (let r=0; r < borderRow.length; r++) {
+            // console.log(r);
+            // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
+
+            // check if the house is in the same column and row
+            if (houseCol === borderCol[c] && houseRow === borderRow[r]){
+              houseWalls++;
+              houses[h].dataset.walls = houseWalls;
+              console.log(`house ${h} has : ${houseWalls} walls built`);
+              // if the house has 4 walls built add to the houses built
+              if (houseWalls == 4) {
+                housesbuilt++
+                // if all the houses have been built then the current player wind
+                console.log("houses built: " + housesbuilt);
+                console.log("all houses: " + houses.length);
+                if (housesbuilt === houses.length) {
+                  console.log(`Player ${player} wins!`);
+                  return;
+                }
+                // else if all 4 walls built but its not the last house then current player plays again
+                else {
+                anotherTurn = true;
+                console.log("player "+player+" playes again");
+                }
+              }
+            }
           }
         }
       }
-      
+
+      // if not all 4 walls are built and current player plays again
+      if (anotherTurn) {
+        anotherTurn = false;
+        return;
+      }
+      // else if not all 4 wals built then switch players
+      else{
+        player = 2;
+        console.log("player "+player+"'s turn");
+        return;
+      }
     }
+
     else {
       border.add("p2Wall");
       border.add("builtWall");
       border.remove("wall");
-      player = 1;
-      console.log("player: "+player);
+
+      // check each house to see if one of its borders has been closed
+      for (let h=0; h < houses.length; h++) {
+        const houseCol = houses[h].dataset.col;
+        // console.log(`house ${h} column is: ${houseCol}`);
+        const houseRow = houses[h].dataset.row;
+        // console.log(`house ${h} row is: ${houseRow}`);
+        // console.log(`house ${h} has ${houses[h].dataset.walls} walls built`);
+        // console.log(h);
+        // console.log(borderCol.length);
+
+        // get the number of walls each house has built
+        let houseWalls = Number(houses[h].dataset.walls);
+
+        // go through all the columns the border belongs to
+        for (let c=0; c < borderCol.length; c++) {
+          // console.log(c);
+
+          //go through all the rows the border belongs to
+          for (let r=0; r < borderRow.length; r++) {
+            // console.log(r);
+            // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
+
+            // check if the house is in the same column and row
+            if (houseCol === borderCol[c] && houseRow === borderRow[r]){
+              houseWalls++;
+              houses[h].dataset.walls = houseWalls;
+              console.log(`house ${h} has : ${houseWalls} walls built`);
+              // if the house has 4 walls built add to the houses built
+              if (houseWalls == 4) {
+                housesbuilt++
+                // if all the houses have been built then the current player wind
+                console.log("houses built: " + housesbuilt);
+                console.log("all houses: " + houses.length);
+                if (housesbuilt === houses.length) {
+                  console.log(`Player ${player} wins!`);
+                  return;
+                }
+                // else if all 4 walls built but its not the last house then current player plays again
+                else {
+                anotherTurn = true;
+                console.log("player "+player+" playes again");
+                }
+              }
+            }
+          }
+        }
+      }
+       
+      // if not all 4 walls are built and current player plays again
+      if (anotherTurn) {
+        anotherTurn = false;
+        return;
+      }
+      // else if not all 4 wals built then switch players
+      else{
+        player = 1;
+        console.log("player "+player+"'s turn");
+        return;
+      }
     }
+    
 //     const audioHref = e.srcElement.attributes.href.nodeValue;
 //    //  console.log(audioHref);
 //     audioFile = new Audio(audioHref);
@@ -64,12 +183,10 @@ function buildWall (e) {
     console.log("DOM fully loaded and parsed");
     // grab all the a walls into an array
     const walls = document.querySelectorAll(".wall");
-   //  console.log(songList);
-   //  console.log(songList[0]);
 
    // add listner to all the a links
     for (i=0; i < walls.length; i++) {
-        console.log(walls[i]);
+        // console.log(walls[i]);
         walls[i].addEventListener("click", buildWall);
     }
   });
