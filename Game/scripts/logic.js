@@ -20,7 +20,7 @@ function buildWall (e) {
     const houses = document.getElementsByClassName("house");
     // console.log(border);
 
-    // if player is 1add player class to wall remove wall class to stop hover
+    // if player is 1 add player class to wall remove wall class to stop hover
     if (player===1) {
       border.add("p1Wall");
       border.add("builtWall");
