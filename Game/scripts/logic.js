@@ -12,8 +12,8 @@ let pScore
 let housesbuilt = 0;
 
 // user provided columns and rows to generate the bord
-const col = 1;
-const row = 1;
+let colNum = 3;
+let rowNum = 3;
 
 // show initial player's turn
 document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
@@ -24,132 +24,164 @@ const houses = document.getElementsByClassName("house");
 
 // generate bord function
 function generateBord () {
-  // add user columns to dom game container
+  //clear bord first
+  clearBord ();
+  // add user columns number to format to css game container
+  // let htmlStyles = window.getComputedStyle(document.querySelector("html"));
 
+  colNum = document.getElementById("colInput").value;
+  let col = 1;
+  // console.log(col);
+  rowNum = document.getElementById("rowInput").value;
+  let row = 1;
+  // console.log(row);
+  document.documentElement.style.setProperty("--colNum", colNum);
   // add lands based on col*row
+  let plots = col*row;
+  // console.log(plots);
+  // loop through lands 
+  for (i=0; i<plots; i++){
+    // add plots
+    let innerPlot = "";
+    let plot = `<div class="land"></div>`;
 
-  // loop through lands adding classes (land,leftHouseLand,topRowHouseLand,otherHouseLand)
-  
-    // loop to go through all col walls and houses
+    //if col == 1 add leftHouseLand to class
+
+    //else then add otherHouseLand to class
+
+    //if row == 1 add topRowHouseLand to class
+
+    //else then add otherHouseLand to class
+
+    //if class contains leftHouseLand let innerColNum = 3; else innerColNum =2
     
-      // add dots walls and houses
+    // inner items (dots borders and house)
+
+    // loop to go through all col dots walls and houses
+    for (c=1; c < 10; c++) {
+      // add dot if col==1 && row==1
+
+      // walls and houses if row
 
       // add classes to walls and houses
 
       // add data-col and data-row to walls and houses
+    }
+    // adding <div> html adding classes (land,leftHouseLand,topRowHouseLand,otherHouseLand)
+  }
 };
 
 function buildWall (e) {
-    // e.preventDefault();
-    console.log("built");
-    // console.log(e);
-    // get all the class list of the border
-    const border = this.classList;
-    //convert the data-column into an array
-    const borderCol = Array.from(this.dataset.col);
+  // e.preventDefault();
+  console.log("built");
+  // console.log(e);
+  // get all the class list of the border
+  const border = this.classList;
+  //convert the data-column into an array
+  const borderCol = Array.from(this.dataset.col);
 
-    // convert the data-row into an array
-    const borderRow = Array.from(this.dataset.row);
-    
-    // console.log(border);
+  // convert the data-row into an array
+  const borderRow = Array.from(this.dataset.row);
+  
+  // console.log(border);
 
-    // get current player score
-    pScore = player === 1 ? p1Score : p2Score; 
-    
-    // add player class to wall remove wall class to stop hover
-    border.add(`p${player}`);
-    border.add("builtWall");
-    border.remove("wall");
-    this.removeEventListener("click", buildWall);
-    // check each house to see if one of its borders has been closed
-    for (let h=0; h < houses.length; h++) {
-      const houseCol = houses[h].dataset.col;
-      // console.log(`house ${h} column is: ${houseCol}`);
-      const houseRow = houses[h].dataset.row;
-      // console.log(`house ${h} row is: ${houseRow}`);
-      // console.log(`house ${h} has ${houses[h].dataset.walls} walls built`);
-      // console.log(h);
-      // console.log(borderCol.length);
+  // get current player score
+  pScore = player === 1 ? p1Score : p2Score; 
+  
+  // add player class to wall remove wall class to stop hover
+  border.add(`p${player}`);
+  border.add("builtWall");
+  border.remove("wall");
+  this.removeEventListener("click", buildWall);
+  // check each house to see if one of its borders has been closed
+  for (let h=0; h < houses.length; h++) {
+    const houseCol = houses[h].dataset.col;
+    // console.log(`house ${h} column is: ${houseCol}`);
+    const houseRow = houses[h].dataset.row;
+    // console.log(`house ${h} row is: ${houseRow}`);
+    // console.log(`house ${h} has ${houses[h].dataset.walls} walls built`);
+    // console.log(h);
+    // console.log(borderCol.length);
 
-      // get the number of walls each house has built
-      let houseWalls = Number(houses[h].dataset.walls);
+    // get the number of walls each house has built
+    let houseWalls = Number(houses[h].dataset.walls);
 
-      // go through all the columns the border belongs to
-      for (let c=0; c < borderCol.length; c++) {
-        // console.log(c);
+    // go through all the columns the border belongs to
+    for (let c=0; c < borderCol.length; c++) {
+      // console.log(c);
 
-        //go through all the rows the border belongs to
-        for (let r=0; r < borderRow.length; r++) {
-          // console.log(r);
-          // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
+      //go through all the rows the border belongs to
+      for (let r=0; r < borderRow.length; r++) {
+        // console.log(r);
+        // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
 
-          // check if the house is in the same column and row
-          if (houseCol === borderCol[c] && houseRow === borderRow[r]){
-            houseWalls++;
-            //add the number of walls built for each house the border belongs to
-            houses[h].dataset.walls = houseWalls;
-            console.log(`house ${h} has : ${houseWalls} walls built`);
-            // if the house has 4 walls built add to the houses built
-            if (houseWalls == 4) {
-              housesbuilt++;
-              pScore++;
-              // add current player class to the house
-              houses[h].classList.add(`p${player}`);
-              // add p score to screen
-              document.getElementById(`p${player}Hcount`).innerText= pScore;
-              // if all the houses have been built then the current player wind
-              console.log("houses built: " + housesbuilt);
-              console.log("all houses: " + houses.length);
-              if (housesbuilt === houses.length) {
-                console.log(`Player ${player} wins!`);
-                document.getElementById("currentPlayer").innerText = `Player ${player} wins!`;
-                return;
-              }
-              // else if all 4 walls built but its not the last house then current player plays again
-              else {
-                anotherTurn = true;
-                console.log("player "+player+" playes again");
-                document.getElementById("currentPlayer").innerText = `Player ${player} playes again`;
-              }
+        // check if the house is in the same column and row
+        if (houseCol === borderCol[c] && houseRow === borderRow[r]){
+          houseWalls++;
+          //add the number of walls built for each house the border belongs to
+          houses[h].dataset.walls = houseWalls;
+          console.log(`house ${h} has : ${houseWalls} walls built`);
+          // if the house has 4 walls built add to the houses built
+          if (houseWalls == 4) {
+            housesbuilt++;
+            pScore++;
+            // add current player class to the house
+            houses[h].classList.add(`p${player}`);
+            // add p score to screen
+            document.getElementById(`p${player}Hcount`).innerText= pScore;
+            // if all the houses have been built then the current player wind
+            console.log("houses built: " + housesbuilt);
+            console.log("all houses: " + houses.length);
+            if (housesbuilt === houses.length) {
+              console.log(`Player ${player} wins!`);
+              document.getElementById("currentPlayer").innerText = `Player ${player} wins!`;
+              return;
+            }
+            // else if all 4 walls built but its not the last house then current player plays again
+            else {
+              anotherTurn = true;
+              console.log("player "+player+" playes again");
+              document.getElementById("currentPlayer").innerText = `Player ${player} playes again`;
             }
           }
         }
       }
     }
+  }
 
-    if (player === 1) {
-      p1Score = pScore;
-      // if not all 4 walls are built and current player plays again
-      if (anotherTurn) {
-        anotherTurn = false;
-        return;
-      }
-      // else if not all 4 wals built then switch players
-      else{
-        document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
-        player = 2;
-        console.log("player "+player+"'s turn");
-        document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
-        document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
-        return;
-      }
-    } else {
-      p2Score = pScore;
-      // if not all 4 walls are built and current player plays again
-      if (anotherTurn) {
-        anotherTurn = false;
-        return;
-      }
-      // else if not all 4 wals built then switch players
-      else{
-        document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
-        player = 1;
-        console.log("player "+player+"'s turn");
-        document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
-        document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
-        return;
-      }
+  if (player === 1) {
+    p1Score = pScore;
+    // if not all 4 walls are built and current player plays again
+    if (anotherTurn) {
+      anotherTurn = false;
+      return;
     }
+    // else if not all 4 wals built then switch players
+    else{
+      document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
+      player = 2;
+      console.log("player "+player+"'s turn");
+      document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+      document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
+      return;
+    }
+  } else {
+    p2Score = pScore;
+    // if not all 4 walls are built and current player plays again
+    if (anotherTurn) {
+      anotherTurn = false;
+      return;
+    }
+    // else if not all 4 wals built then switch players
+    else{
+      document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
+      player = 1;
+      console.log("player "+player+"'s turn");
+      document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+      document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
+      return;
+    }
+  }
 
 //     const audioHref = e.srcElement.attributes.href.nodeValue;
 //    //  console.log(audioHref);
@@ -222,4 +254,7 @@ function clearBord () {
 
     // add listner to clear button
     document.querySelector("#clearButton").addEventListener("click", clearBord);
+
+    //add listner to generate bord button
+    document.querySelector("#generateBord").addEventListener("click", generateBord);
   });

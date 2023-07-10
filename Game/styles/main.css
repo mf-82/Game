@@ -45,7 +45,12 @@ h1 {
 }
 
 #currentPlayer {
- font-size: 30px;
+    font-size: 30px;
+}
+
+:root {
+    --colNum: 3;
+    --rowNum: 3;
 }
 
 #gameContainer {
@@ -53,7 +58,7 @@ h1 {
     border: 10px grey solid;
     padding: 10px;
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(var(--colNum), auto);
 }
 
 .leftHouseLand {
@@ -147,6 +152,14 @@ h1 {
 }
 #clearButton:hover {
     color: brown;
+}
+
+.numInput {
+    margin: 5px;
+}
+
+.colRowInput {
+    margin: 5px;
 }
 
 /* .p1House {
