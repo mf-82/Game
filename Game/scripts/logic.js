@@ -37,37 +37,131 @@ function generateBord () {
   // console.log(row);
   document.documentElement.style.setProperty("--colNum", colNum);
   // add lands based on col*row
-  let plots = col*row;
+  let plots = colNum*rowNum;
   // console.log(plots);
   // loop through lands 
+  // console.log(plots);
+
+  //clear inner htmal of game container
+  document.getElementById("gameContainer").innerHTML = "";
+
   for (i=0; i<plots; i++){
     // add plots
+    console.log(i);
     let innerPlot = "";
-    let plot = `<div class="land"></div>`;
-
+    let plot = `<div class="land`;
     //if col == 1 add leftHouseLand to class
-
-    //else then add otherHouseLand to class
-
+    if (col==1) {
+      plot += ` leftHouseLand`;
+    }
+    //else add otherHouseLand to class
+    else {
+      plot += ` otherHouseLand`
+    }
     //if row == 1 add topRowHouseLand to class
-
-    //else then add otherHouseLand to class
-
-    //if class contains leftHouseLand let innerColNum = 3; else innerColNum =2
+    if (row==1) {
+      plot += ` topRowHouseLand`;
+    }
     
-    // inner items (dots borders and house)
-
+    plot += `">`;
+    
     // loop to go through all col dots walls and houses
     for (c=1; c < 10; c++) {
-      // add dot if col==1 && row==1
-
-      // walls and houses if row
-
-      // add classes to walls and houses
-
-      // add data-col and data-row to walls and houses
+      // if c=1
+      if (c==1) {
+        // add dot only if col==1 && row==1
+        if (col==1 && row==1){
+          innerPlot += `<div class="dot"></div>`;
+        }
+      }
+      // if c=2
+      if (c==2) {
+        // add top hwalls if row == 1
+        if (row==1) {
+          // add wall hWall classes, add datasets data-col=`${col}` data-row=`${row}`
+          innerPlot += `<div class="wall hWall" data-col=${col} data-row=${row}></div>`;
+        }
+      }
+      // if c=3
+      if (c==3) {
+        // add dot only if row=1
+        if (row==1){
+          innerPlot += `<div class="dot"></div>`;
+        }
+      }
+      //if c=4
+      if (c==4) {
+        // add vwall only if col=1
+        if (col==1){
+          // add wall vWall classes, add datasets data-col=`${col}` data-row=`${row}`
+          innerPlot += `<div class="wall vWall" data-col=${col} data-row=${row}></div>`
+        }
+      }
+      //if c=5
+      if (c==5){
+        // add house and class, add datasets data-col=`${col}` data-row=`${row}` and data-walls="0"
+        innerPlot += `<div class="house" data-col=${col} data-row=${row} data-walls="0"></div>`
+      }
+      //if c=6
+      if (c==6){
+        // add end vwall
+        // if col<colNum add wall vWall classes, add datasets data-col=`${col},${col+1}` data-row=`${row}`
+        if (col<colNum) {
+          innerPlot += `<div class="wall vWall" data-col="${col},${col+1}" data-row="${row}"></div>`
+        }
+        // else add wall vWall classes, add datasets data-col=`${col}` data-row=`${row}`
+        else {
+          innerPlot += `<div class="wall vWall" data-col="${col}" data-row="${row}"></div>`
+        }
+      }
+      //if c=7
+      if (c==7) {
+        // add dot only if col=1
+        if (col==1){
+          innerPlot += `<div class="dot"></div>`
+        }
+      }
+      //if c=8
+      if (c==8) {
+        // add end hWall
+        //if row<rowNum add wall hWall classes, add datasets data-col=`${col}` data-row=`${row},${row+1}`
+        if (row<rowNum) {
+          innerPlot += `<div class="wall hWall" data-col=${col} data-row=${row},${row+1}"></div>`
+        }
+        //else add wall hWall classes, add datasets data-col=`${col}` data-row=`${row}`
+        else {
+          innerPlot += `<div class="wall hWall" data-col=${col} data-row=${row}></div>`
+        }
+      }
+      //if c=9
+      if (c==9){
+        // add dot
+        innerPlot +=`<div class="dot"></div>`
+      }
     }
-    // adding <div> html adding classes (land,leftHouseLand,topRowHouseLand,otherHouseLand)
+
+    // append internalHtml to plot
+    plot += innerPlot;
+    //close land div
+    plot += `</div>`;
+
+    // col ++ if col > colNum then col=1 and row++
+    col++
+    if (col>colNum){
+      col=1;
+      row++;
+    }
+
+    //add to game container inner html
+    document.getElementById("gameContainer").innerHTML += plot;
+  }
+  // // grab all the a walls into an array
+  const walls = document.querySelectorAll(".wall");
+  // generateBord ();
+  // // add listner to all the a links
+  for (i=0; i < walls.length; i++) {
+    // console.log(walls[i]);
+    walls[i].addEventListener("click", buildWall);
   }
 };
 
@@ -245,8 +339,8 @@ function clearBord () {
     console.log("DOM fully loaded and parsed");
     // grab all the a walls into an array
     const walls = document.querySelectorAll(".wall");
-
-   // add listner to all the a links
+    generateBord ();
+    // add listner to all the a links
     for (i=0; i < walls.length; i++) {
         // console.log(walls[i]);
         walls[i].addEventListener("click", buildWall);
