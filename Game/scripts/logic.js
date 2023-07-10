@@ -223,12 +223,24 @@ function buildWall (e) {
             houses[h].classList.add(`p${player}`);
             // add p score to screen
             document.getElementById(`p${player}Hcount`).innerText= pScore;
-            // if all the houses have been built then the current player wind
+            // if all the houses have been built then check who has more houses and declare them the winner
             console.log("houses built: " + housesbuilt);
             console.log("all houses: " + houses.length);
             if (housesbuilt === houses.length) {
-              console.log(`Player ${player} wins!`);
-              document.getElementById("currentPlayer").innerText = `Player ${player} wins!`;
+              if (document.getElementById(`p1Hcount`).innerText>document.getElementById(`p2Hcount`).innerText) {
+              console.log(`Player 1 wins!`);
+              document.getElementById("currentPlayer").innerText = `Player 1 wins!`;
+              
+              }
+              else if (document.getElementById(`p1Hcount`).innerText<document.getElementById(`p2Hcount`).innerText){
+                console.log(`Player 2 wins!`);
+                document.getElementById("currentPlayer").innerText = `Player 2 wins!`;
+              }
+              else {
+                console.log(`It's a tie!`);
+                document.getElementById("currentPlayer").innerText = `It's a tie!`;
+              }
+              document.getElementById("currentPlayer").style.color = "purple";
               return;
             }
             // else if all 4 walls built but its not the last house then current player plays again
@@ -304,7 +316,9 @@ function buildWall (e) {
 
 function clearBord () {
   // reset scores and 
-  player = player = Math.ceil(Math.random()*2);;
+  player = player = Math.ceil(Math.random()*2);
+  // reset current player color
+  document.getElementById("currentPlayer").style.color = "";
   anotherTurn = false;
   p1Score = 0;
   p2Score = 0;
