@@ -28,12 +28,24 @@ header {
     background-color: teal;
 }
 
+.p1TextColor {
+    color: teal;
+}
+
 .p2 {
     background-color: brown;
 }
 
+.p2TextColor {
+    color: brown;
+}
+
 h1 {
     text-align: center;
+}
+
+#currentPlayer {
+ font-size: 30px;
 }
 
 #gameContainer {
@@ -91,6 +103,50 @@ h1 {
 .house {
     width: 100%;
     min-height: 100px;
+}
+
+.buttons {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    display: flex;
+    margin: 10px;
+    border: 2px gray solid;
+    /* min-width: 100px;
+    max-width: 200px;
+    min-height: 40px;
+    max-height: 80px; */
+    min-width: 150px;
+    max-height: 30px;
+    background-color: darkgray;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.button p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button:hover {
+    top: -1px;
+    right: -1px;
+    background-color: gray;
+    font-size: 25x;
+
+}
+
+#clearButton {
+    color: red;
+}
+#clearButton:hover {
+    color: brown;
 }
 
 /* .p1House {

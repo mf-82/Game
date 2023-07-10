@@ -1,11 +1,43 @@
-let player = 1;
+// current player var
+let player = Math.ceil(Math.random()*2);
+// var to check if player playes again
 let anotherTurn = false;
+// player 1 and 2 scores
 let p1Score = 0;
 let p2Score = 0;
+// var to store current player score
 let pScore
 
 // number of houses built
 let housesbuilt = 0;
+
+// user provided columns and rows to generate the bord
+const col = 1;
+const row = 1;
+
+// show initial player's turn
+document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
+
+//get all the houses
+const houses = document.getElementsByClassName("house");
+
+// generate bord function
+function generateBord () {
+  // add user columns to dom game container
+
+  // add lands based on col*row
+
+  // loop through lands adding classes (land,leftHouseLand,topRowHouseLand,otherHouseLand)
+  
+    // loop to go through all col walls and houses
+    
+      // add dots walls and houses
+
+      // add classes to walls and houses
+
+      // add data-col and data-row to walls and houses
+};
 
 function buildWall (e) {
     // e.preventDefault();
@@ -19,20 +51,13 @@ function buildWall (e) {
     // convert the data-row into an array
     const borderRow = Array.from(this.dataset.row);
     
-    //get all the houses
-    const houses = document.getElementsByClassName("house");
     // console.log(border);
 
-    // if player is 1 add player class to wall remove wall class to stop hover
-    if (player===1) {
-      border.add("p1");
-      pScore = p1Score;
-    }
-    // if player 2 do the same but for p2
-    else {
-      border.add("p2");
-      pScore = p2Score; 
-    }
+    // get current player score
+    pScore = player === 1 ? p1Score : p2Score; 
+    
+    // add player class to wall remove wall class to stop hover
+    border.add(`p${player}`);
     border.add("builtWall");
     border.remove("wall");
     this.removeEventListener("click", buildWall);
@@ -77,12 +102,14 @@ function buildWall (e) {
               console.log("all houses: " + houses.length);
               if (housesbuilt === houses.length) {
                 console.log(`Player ${player} wins!`);
+                document.getElementById("currentPlayer").innerText = `Player ${player} wins!`;
                 return;
               }
               // else if all 4 walls built but its not the last house then current player plays again
               else {
-              anotherTurn = true;
-              console.log("player "+player+" playes again");
+                anotherTurn = true;
+                console.log("player "+player+" playes again");
+                document.getElementById("currentPlayer").innerText = `Player ${player} playes again`;
               }
             }
           }
@@ -99,8 +126,11 @@ function buildWall (e) {
       }
       // else if not all 4 wals built then switch players
       else{
+        document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
         player = 2;
         console.log("player "+player+"'s turn");
+        document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+        document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
         return;
       }
     } else {
@@ -112,16 +142,15 @@ function buildWall (e) {
       }
       // else if not all 4 wals built then switch players
       else{
+        document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
         player = 1;
         console.log("player "+player+"'s turn");
+        document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+        document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
         return;
       }
     }
-      
-    
-    
-      
-      
+
 //     const audioHref = e.srcElement.attributes.href.nodeValue;
 //    //  console.log(audioHref);
 //     audioFile = new Audio(audioHref);
@@ -147,6 +176,39 @@ function buildWall (e) {
 //     audioFile.play();
 }
 
+function clearBord () {
+  // reset scores and 
+  player = player = Math.ceil(Math.random()*2);;
+  anotherTurn = false;
+  p1Score = 0;
+  p2Score = 0;
+  housesbuilt = 0;
+  // grab all walls into array
+  const walls = document.querySelectorAll(".hWall, .vWall");
+  // show initial player's turn
+  document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+  document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
+  // add p score to screen
+  document.getElementById(`p1Hcount`).innerText= p1Score;
+  document.getElementById(`p2Hcount`).innerText= p2Score;
+  // remove p1 and p2 classes from walls and houses
+  for (h=0; h < houses.length; h++){
+    houses[h].classList.remove("p1");
+    houses[h].classList.remove("p2");
+    houses[h].dataset.walls=0;
+  }
+  // add listner to all the a links
+  for (w=0; w < walls.length; w++) {
+    // console.log(walls[i]);
+    walls[w].classList.add("wall");
+    walls[w].classList.remove("p1");
+    walls[w].classList.remove("p2");
+    walls[w].classList.remove("builtWall");
+    walls[w].addEventListener("click", buildWall);
+}
+
+}
+
  window.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
     // grab all the a walls into an array
@@ -157,4 +219,7 @@ function buildWall (e) {
         // console.log(walls[i]);
         walls[i].addEventListener("click", buildWall);
     }
+
+    // add listner to clear button
+    document.querySelector("#clearButton").addEventListener("click", clearBord);
   });

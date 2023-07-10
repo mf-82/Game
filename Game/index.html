@@ -14,7 +14,10 @@
         <h2>Player 1 Houses:</h2>
         <div class="houseCount p1" id="p1Hcount">0</div>
       </div>
+      <div>
       <h1 id="gameName">Houses</h1>
+      <div id="currentPlayer"></div>
+      </div>
       <div class="playerHouses p2">
         <h2>Player 2 Houses:</h2>
         <div class="houseCount p2" id="p2Hcount">0</div>
@@ -23,7 +26,7 @@
   </header>
   <main>
     <div id="gameContainer">
-      <div class="leftHouseLand topRowHouseLand">
+      <div class="land leftHouseLand topRowHouseLand">
         <div class="dot"></div>
         <div class="wall hWall" data-col="1" data-row="1"></div>
         <div class="dot"></div>
@@ -34,7 +37,7 @@
         <div class="wall hWall" data-col="1" data-row="1,2"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand topRowHouseLand">
+      <div class="land otherHouseLand topRowHouseLand">
         <div class="wall hWall" data-col="2" data-row="1"></div>
         <div class="dot"></div>
         <div class="house" data-col="2" data-row="1" data-walls="0"></div>
@@ -42,7 +45,7 @@
         <div class="wall hWall" data-col="2" data-row="1,2"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand topRowHouseLand">
+      <div class="land otherHouseLand topRowHouseLand">
         <div class="wall hWall" data-col="3" data-row="1"></div>
         <div class="dot"></div>
         <div class="house" data-col="3" data-row="1" data-walls="0" ></div>
@@ -50,7 +53,7 @@
         <div class="wall hWall" data-col="3" data-row="1,2"></div>
         <div class="dot"></div>
       </div>
-      <!-- <div class="leftHouseLand otherRowHouseLand">
+      <!-- <div class="land leftHouseLand otherRowHouseLand">
         <div class="wall vWall"></div>
         <div class="house"></div>
         <div class="wall vWall"></div>
@@ -58,19 +61,19 @@
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand otherRowHouseLand">
+      <div class="land otherHouseLand otherRowHouseLand">
         <div class="house"></div>
         <div class="wall vWall"></div>
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand otherRowHouseLand">
+      <div class="land otherHouseLand otherRowHouseLand">
         <div class="house"></div>
         <div class="wall vWall"></div>
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div>
-      <div class="leftHouseLand otherRowHouseLand">
+      <div class="land leftHouseLand otherRowHouseLand">
         <div class="wall vWall"></div>
         <div class="house"></div>
         <div class="wall vWall"></div>
@@ -78,18 +81,21 @@
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand otherRowHouseLand">
+      <div class="land otherHouseLand otherRowHouseLand">
         <div class="house"></div>
         <div class="wall vWall"></div>
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div>
-      <div class="otherHouseLand otherRowHouseLand">
+      <div class="land otherHouseLand otherRowHouseLand">
         <div class="house"></div>
         <div class="wall vWall"></div>
         <div class="wall hWall"></div>
         <div class="dot"></div>
       </div> -->
+    </div>
+    <div class="buttons">
+      <div class="button" id="clearButton"><p>Clear Bord</p></div>
     </div>
   </main>
   
