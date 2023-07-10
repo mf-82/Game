@@ -20,6 +20,16 @@ header {
     border: 4px solid blue;
     border-radius: 5px;
     min-height: 40px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.p1 {
+    background-color: teal;
+}
+
+.p2 {
+    background-color: brown;
 }
 
 h1 {
@@ -70,26 +80,26 @@ h1 {
     background-color: darkgray;
 }
 
-.p1Wall {
+/* .p1Wall {
     background-color: teal;
 }
 
 .p2Wall {
     background-color: brown;
-}
+} */
 
 .house {
     width: 100%;
     min-height: 100px;
 }
 
-.p1House {
+/* .p1House {
     background-color: teal;
 }
 
 .p2House {
     background-color: brown;
-}
+} */
 
 /* .house:before {
     display: block;
