@@ -67,9 +67,27 @@ header {
     color: brown;
 }
 
+.hWall {
+    width: 100%;
+    height: 10px;
+}
+
+.vWall  {
+    width: 10px;
+    height: 100%;
+    animation: drow, linear, 4000;
+}
+
 .builtWall {
     background-image: url("../imgs/sOe1DGoglpZFevMvLPwr6wTpa_normal.jpg.crdownload");
     background-size: 100% 100%;
+    animation-name: drow;
+    animation-duration: 4000;
+}
+
+@keyframes drow {
+    0% {height: 0;}
+    100% {height: 100%;}
 }
 
 .built {
@@ -124,16 +142,6 @@ h1 {
     /* background-color: black; */
     background-image: url("../imgs/dot.png");
 
-}
-
-.hWall {
-    width: 100%;
-    height: 10px;
-}
-
-.vWall {
-    width: 10px;
-    height: 100%;
 }
 
 .wall:hover {
