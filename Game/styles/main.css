@@ -24,7 +24,13 @@ header {
     font-size: 30px;
 }
 
+
+
 .p1 {
+    background-color: teal;
+}
+
+.ph1 {
     background-color: teal;
 }
 
@@ -36,8 +42,22 @@ header {
     background-color: brown;
 }
 
+.ph2 {
+    background-color: brown;
+}
+
 .p2TextColor {
     color: brown;
+}
+
+.builtWall {
+    background-image: url("../imgs/sOe1DGoglpZFevMvLPwr6wTpa_normal.jpg.crdownload");
+    background-size: 100% 100%;
+}
+
+.built {
+    background-image: url("../imgs/roofbirdeye.png");
+    background-size: 100% 100%;
 }
 
 h1 {
@@ -46,6 +66,8 @@ h1 {
 
 #currentPlayer {
     font-size: 30px;
+    text-align: center;
+    padding: 10px;
 }
 
 :root {
@@ -156,11 +178,38 @@ h1 {
 
 .numInput {
     margin: 5px;
+    max-width: 50px;
+    max-height: 20px;
+    font-size: 20px;
+    text-align: center;
 }
 
 .colRowInput {
     margin: 5px;
 }
+
+.genBordContainer {
+    display: flex;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 800px) {
+    header :nth-child(2) { 
+        order: -1;
+        flex: 100% 
+    }
+    header {
+        flex-wrap: wrap;
+    }
+    .genBordContainer {
+        flex-direction: column;
+    }
+}
+
 
 /* .p1House {
     background-color: teal;

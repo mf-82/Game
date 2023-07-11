@@ -221,6 +221,7 @@ function buildWall (e) {
             pScore++;
             // add current player class to the house
             houses[h].classList.add(`p${player}`);
+            houses[h].classList.add(`built`);
             // add p score to screen
             document.getElementById(`p${player}Hcount`).innerText= pScore;
             // if all the houses have been built then check who has more houses and declare them the winner
