@@ -191,10 +191,10 @@ function buildWall (e) {
   // get all the class list of the border
   const border = this.classList;
   //convert the data-column into an array
-  const borderCol = Array.from(this.dataset.col);
+  const borderCol = this.dataset.col.split(",");
 
   // convert the data-row into an array
-  const borderRow = Array.from(this.dataset.row);
+  const borderRow = this.dataset.row.split(",");
   
   // console.log(border);
 
@@ -235,16 +235,19 @@ function buildWall (e) {
 
     // get the number of walls each house has built
     let houseWalls = Number(houses[h].dataset.walls);
-
+    console.log(`House ${h}`);
     // go through all the columns the border belongs to
     for (let c=0; c < borderCol.length; c++) {
       // console.log(c);
-
+      console.log ("house is in col " +houseCol);
+      console.log("border col " +c + " is " +borderCol[c]);
       //go through all the rows the border belongs to
       for (let r=0; r < borderRow.length; r++) {
         // console.log(r);
         // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
-
+        console.log ("house is in row " +houseRow);
+        console.log("border row " +r + " is " + borderRow[r]);
+        console.log(houseCol === borderCol[c] && houseRow === borderRow[r]);
         // check if the house is in the same column and row
         if (houseCol === borderCol[c] && houseRow === borderRow[r]){
           houseWalls++;
