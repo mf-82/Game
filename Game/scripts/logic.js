@@ -30,9 +30,20 @@ function generateBord () {
   // let htmlStyles = window.getComputedStyle(document.querySelector("html"));
 
   colNum = document.getElementById("colInput").value;
+  //validate if col number is bigger than 0 if not the col 1 
+  if (colNum < 1) {
+    colNum = 1;
+  }
+  // validate that col number is not higher than 30 if higher then col is 30
+  else if (colNum > 30) {
+    colNum = 30;
+  }
   let col = 1;
   // console.log(col);
   rowNum = document.getElementById("rowInput").value;
+  if (rowNum < 1) {
+    rowNum = 1;
+  }
   let row = 1;
   // console.log(row);
   document.documentElement.style.setProperty("--colNum", colNum);
@@ -184,9 +195,26 @@ function buildWall (e) {
   
   // add player class to wall remove wall class to stop hover
   border.add(`p${player}`);
-  border.add("builtWall");
+  if (border.contains("vWall")) {
+    if (border.contains("p1")) {
+      border.add("builtP1VWall");
+    }
+    else {
+      border.add("builtP2VWall");
+    }
+  }
+  else {
+    if (border.contains("p1")) {
+      border.add("builtP1HWall");
+    }
+    else {
+      border.add("builtP2HWall");
+    }
+  }
   border.remove("wall");
   this.removeEventListener("click", buildWall);
+  // play pencil sound
+
   // check each house to see if one of its borders has been closed
   for (let h=0; h < houses.length; h++) {
     const houseCol = houses[h].dataset.col;
@@ -336,6 +364,7 @@ function clearBord () {
   for (h=0; h < houses.length; h++){
     houses[h].classList.remove("p1");
     houses[h].classList.remove("p2");
+    houses[h].classList.remove("built");
     houses[h].dataset.walls=0;
   }
   // add listner to all the a links
@@ -345,6 +374,10 @@ function clearBord () {
     walls[w].classList.remove("p1");
     walls[w].classList.remove("p2");
     walls[w].classList.remove("builtWall");
+    walls[w].classList.remove("builtP1VWall");
+    walls[w].classList.remove("builtP2VWall");
+    walls[w].classList.remove("builtP1HWall");
+    walls[w].classList.remove("builtP2HWall");
     walls[w].addEventListener("click", buildWall);
 }
 

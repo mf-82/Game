@@ -1,18 +1,56 @@
 
 body {
     background-image: url("../imgs/2304.w061.n005.156B.p15.156.jpg") ;
-    background-size: cover;  
+    background-size: 100% 105%;
+    background-repeat: no-repeat;  
     margin: 0;
     padding: 0;
-}
+    overflow: hidden;
+    }
+
 .sun {
     position: absolute;
-    background-color: black;
     width: 100%;
     height: 100%;
-    opacity: 0.1; 
+    /* background-color: #000022; */
+    opacity: 0.2; 
     margin: 0;
     padding: 0;
+    animation: sunColor 80s linear infinite;
+}
+
+@keyframes sunColor{
+    0% {background-color: white;}
+    25% {background-color: white;}
+    40% {background-color: orangered;}
+    55% {background-color: #000022;}
+    63% {opacity: 0.5;}
+    70% {background-color: #000022;}
+    85% {background-color: orange;}
+    100% {background-color: white;}
+}
+
+.cloud {
+    background-image: url("../imgs/cloudO.png");
+    background-size: 100%;
+    background-repeat: no-repeat; 
+    position: absolute;
+    top:  3%;
+    width: 30%;
+    height: 30%;
+    z-index: -1;
+    animation: cloudMove 80s linear infinite;
+}
+
+/* @keyframes cloudMove {
+    0% {left: -30%;}
+    100% {left: 110%;}
+} */
+
+@keyframes cloudMove {
+    0% {left: -30%;
+        /* top:percentage(random(100) / 100); */}
+    100% {left: 110%;}
 }
 
 header {
@@ -26,6 +64,7 @@ header {
     border: 5px solid gray;
     border-radius: 5px;
     padding: 5px;
+    opacity: 0.8;
     
 }
 
@@ -37,12 +76,9 @@ header {
     font-size: 30px;
 }
 
-
-
 .p1 {
-    border:1px teal solid;
+    background-color:teal;
     border-radius: 5px;
-    opacity: 0.9;
 }
 
 .ph1 {
@@ -54,13 +90,12 @@ header {
 }
 
 .p2 {
-    border:1px brown solid;
+    background-color:brown;
     border-radius: 5px;
-    opacity: 0.9;
 }
 
 .ph2 {
-    background-color: brown;
+    background-color:brown;
 }
 
 .p2TextColor {
@@ -75,24 +110,45 @@ header {
 .vWall  {
     width: 10px;
     height: 100%;
-    animation: drow, linear, 4000;
 }
 
-.builtWall {
-    background-image: url("../imgs/sOe1DGoglpZFevMvLPwr6wTpa_normal.jpg.crdownload");
-    background-size: 100% 100%;
-    animation-name: drow;
-    animation-duration: 4000;
+.builtP1VWall {
+    background-image: url("../imgs/P1\ pencil\ line\ v.png");
+    /* background-size: 100% 100%; */
+    animation: drowV 0.5s linear;
+}
+.builtP2VWall {
+    background-image: url("../imgs/P2\ pencil\ line\ v.png");
+    /* background-size: 100% 100%; */
+    animation: drowV 0.5s linear;
 }
 
-@keyframes drow {
+@keyframes drowV {
     0% {height: 0;}
     100% {height: 100%;}
 }
 
-.built {
-    background-image: url("../imgs/16620.jpg");
+.builtP1HWall {
+    background-image: url("../imgs/P1\ pencil\ line\ h.png");
     background-size: 100% 100%;
+    animation: drowh 0.5s linear;
+}
+.builtP2HWall {
+    background-image: url("../imgs/P2\ pencil\ line\ h.png");
+    background-size: 100% 100%;
+    animation: drowh 0.5s linear;
+}
+
+@keyframes drowh {
+    0% {width: 0;}
+    100% {width: 100%;}
+}
+
+.built {
+    /* background-image: url("../imgs/16620.jpg"); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 h1 {
@@ -113,10 +169,11 @@ h1 {
 #gameContainer {
     background-color: white;
     border: 10px grey solid;
-    padding: 10px;
     display: grid;
     grid-template-columns: repeat(var(--colNum), auto);
     opacity: 0.9;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .leftHouseLand {
@@ -162,10 +219,10 @@ h1 {
 }
 
 .buttons {
-    margin: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0.9;
 }
 
 .button {
