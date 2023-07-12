@@ -22,6 +22,14 @@ document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
 //get all the houses
 const houses = document.getElementsByClassName("house");
 
+// random cloud top enerator
+function cloudTopRand () {
+  let rand1_10 = Math.ceil(Math.random () * 10);
+  // console.log("random between 1 and 15: "+rand1_15);
+  document.documentElement.style.setProperty("--cloudTopStart", rand1_10+"%");
+  setTimeout (cloudTopRand, 80000);
+}
+
 // generate bord function
 function generateBord () {
   //clear bord first
@@ -387,7 +395,10 @@ function clearBord () {
     console.log("DOM fully loaded and parsed");
     // grab all the a walls into an array
     const walls = document.querySelectorAll(".wall");
+    // generate bord with defaut
     generateBord ();
+    //run random cloud top % function
+    cloudTopRand ();
     // add listner to all the a links
     for (i=0; i < walls.length; i++) {
         // console.log(walls[i]);
