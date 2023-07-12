@@ -145,7 +145,7 @@ function generateBord () {
         // add end hWall
         //if row<rowNum add wall hWall classes, add datasets data-col=`${col}` data-row=`${row},${row+1}`
         if (row<rowNum) {
-          innerPlot += `<div class="wall hWall" data-col=${col} data-row=${row},${row+1}"></div>`
+          innerPlot += `<div class="wall hWall" data-col=${col} data-row=${row},${row+1}></div>`
         }
         //else add wall hWall classes, add datasets data-col=`${col}` data-row=`${row}`
         else {
@@ -187,6 +187,11 @@ function generateBord () {
 function buildWall (e) {
   // e.preventDefault();
   console.log("built");
+  //playe writing sound
+  //     audioFile = new Audio(audioHref);
+//     //play audio
+//     audioFile.play();
+  new Audio("./sounds/marker-lineswav-3-1.mp3").play();
   // console.log(e);
   // get all the class list of the border
   const border = this.classList;
@@ -331,7 +336,6 @@ function buildWall (e) {
 
 //     const audioHref = e.srcElement.attributes.href.nodeValue;
 //    //  console.log(audioHref);
-//     audioFile = new Audio(audioHref);
 //    //  console.log(this.parentNode);
 
 //    //change the background color slightly to feel responsive
@@ -350,6 +354,7 @@ function buildWall (e) {
 //       parentOfbutton.classList.remove("dpHead");
 //     }, 12000);
 
+//     audioFile = new Audio(audioHref);
 //     //play audio
 //     audioFile.play();
 }
