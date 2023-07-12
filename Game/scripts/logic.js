@@ -191,7 +191,8 @@ function buildWall (e) {
   //     audioFile = new Audio(audioHref);
 //     //play audio
 //     audioFile.play();
-  new Audio("./sounds/marker-lineswav-3-1.mp3").play();
+  let audioFileLine = new Audio("./sounds/marker-lineswav-3-1.mp3")
+  audioFileLine.play();
   // console.log(e);
   // get all the class list of the border
   const border = this.classList;
@@ -263,6 +264,9 @@ function buildWall (e) {
           if (houseWalls == 4) {
             housesbuilt++;
             pScore++;
+            // play house complet sound
+            let audioFileHComplete = new Audio("./sounds/bright-notifications-151766.mp3")
+            audioFileHComplete.play();
             // add current player class to the house
             houses[h].classList.add(`p${player}`);
             houses[h].classList.add(`built`);
@@ -272,6 +276,14 @@ function buildWall (e) {
             console.log("houses built: " + housesbuilt);
             console.log("all houses: " + houses.length);
             if (housesbuilt === houses.length) {
+              //play win audio if not a tie
+              if (!document.getElementById(`p1Hcount`).innerText==document.getElementById(`p2Hcount`).innerText) {
+              let audioFilewin = new Audio("./sounds/success-fanfare-trumpets-6185.mp3")
+              let audioFileCheer = new Audio("./sounds/crowd-cheer-ii-6263-3s.mp3")
+
+              setTimeout(function(){audioFilewin.play();audioFileCheer.play();}, 1000);
+              // setTimeout(function(){audioFileCheer.play()},1000);
+              }
               if (document.getElementById(`p1Hcount`).innerText>document.getElementById(`p2Hcount`).innerText) {
               console.log(`Player 1 wins!`);
               document.getElementById("currentPlayer").innerText = `Player 1 wins!`;
@@ -283,6 +295,10 @@ function buildWall (e) {
               }
               else {
                 console.log(`It's a tie!`);
+                // play tie sound
+                let audioFileTie = new Audio("./sounds/brass-fanfare-reverberated-146263.mp3")
+                audioFileTie.play();
+
                 document.getElementById("currentPlayer").innerText = `It's a tie!`;
               }
               document.getElementById("currentPlayer").style.color = "purple";
