@@ -356,6 +356,9 @@ function clearBord () {
   player = player = Math.ceil(Math.random()*2);
   // reset current player color
   document.getElementById("currentPlayer").style.color = "";
+  document.getElementById("currentPlayer").classList.remove (`p1TextColor`);
+  document.getElementById("currentPlayer").classList.remove (`p2TextColor`);
+  document.getElementById("currentPlayer").classList.add (`p${player}TextColor`);
   anotherTurn = false;
   p1Score = 0;
   p2Score = 0;
