@@ -15,6 +15,13 @@ let housesbuilt = 0;
 let colNum = 3;
 let rowNum = 3;
 
+// var for audios
+let audioFileLine = new Audio("./sounds/marker-lineswav-3-1.mp3")
+let audioFileCheer = new Audio("./sounds/crowd-cheer-ii-6263.mp3")
+let audioFileHComplete = new Audio("./sounds/bright-notifications-151766.mp3")
+let audioFilewin = new Audio("./sounds/success-fanfare-trumpets-6185.mp3")
+let audioFileTie = new Audio("./sounds/brass-fanfare-reverberated-146263.mp3")
+
 // show initial player's turn
 document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
 document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
@@ -191,7 +198,7 @@ function buildWall (e) {
   //     audioFile = new Audio(audioHref);
 //     //play audio
 //     audioFile.play();
-  let audioFileLine = new Audio("./sounds/marker-lineswav-3-1.mp3")
+  
   audioFileLine.play();
   // console.log(e);
   // get all the class list of the border
@@ -265,7 +272,6 @@ function buildWall (e) {
             housesbuilt++;
             pScore++;
             // play house complet sound
-            let audioFileHComplete = new Audio("./sounds/bright-notifications-151766.mp3")
             audioFileHComplete.play();
             // add current player class to the house
             houses[h].classList.add(`p${player}`);
@@ -277,11 +283,12 @@ function buildWall (e) {
             console.log("all houses: " + houses.length);
             if (housesbuilt === houses.length) {
               //play win audio if not a tie
-              if (!document.getElementById(`p1Hcount`).innerText==document.getElementById(`p2Hcount`).innerText) {
-              let audioFilewin = new Audio("./sounds/success-fanfare-trumpets-6185.mp3")
-              let audioFileCheer = new Audio("./sounds/crowd-cheer-ii-6263-3s.mp3")
-
-              setTimeout(function(){audioFilewin.play();audioFileCheer.play();}, 1000);
+              if (!(document.getElementById(`p1Hcount`).innerText==document.getElementById(`p2Hcount`).innerText)) {
+                setTimeout(function(){
+                  audioFilewin.play();
+                  audioFileCheer.play();
+                  document.querySelector(".win").style.display = "block";
+                }, 1000);
               // setTimeout(function(){audioFileCheer.play()},1000);
               }
               if (document.getElementById(`p1Hcount`).innerText>document.getElementById(`p2Hcount`).innerText) {
@@ -296,7 +303,6 @@ function buildWall (e) {
               else {
                 console.log(`It's a tie!`);
                 // play tie sound
-                let audioFileTie = new Audio("./sounds/brass-fanfare-reverberated-146263.mp3")
                 audioFileTie.play();
 
                 document.getElementById("currentPlayer").innerText = `It's a tie!`;
@@ -376,6 +382,13 @@ function buildWall (e) {
 }
 
 function clearBord () {
+  // stop all sounds
+  audioFileCheer.pause();
+  audioFileLine.pause();
+  audioFileCheer.pause();
+  audioFileHComplete.pause();
+  audioFilewin.pause();
+  audioFileTie.pause();
   // reset scores and 
   player = player = Math.ceil(Math.random()*2);
   // reset current player color
@@ -414,6 +427,8 @@ function clearBord () {
     walls[w].classList.remove("builtP1HWall");
     walls[w].classList.remove("builtP2HWall");
     walls[w].addEventListener("click", buildWall);
+    //remove win confiti
+    document.querySelector(".win").style.display = "none";
 }
 
 }
