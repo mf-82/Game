@@ -47,15 +47,20 @@ Its a game where players drow lines around a block to capture it
 	- Added images to backgrounds
 	- Added animations
 	- Added sounds
+- Fifth day
+	- Created Readme.md
+	- Added wins and ties and a button to clear them
 
 ## Issues faced
 - Figuring out how borders adjaset to diffrent div count as belonging to that column or row
-- auto generating logic to add data attributes for colums and rows
+- Auto generating logic to add data attributes for colums and rows
+- Finding images and sounds to use (more time consuming than expected/0
 
 ## Unsolved problems
-- Sun div and celebration div do not scale all the way down when hight is long
+- Sun sunCycle and celebration divs do not scale all the way down when hight is long
 
 ## Things I wanted to add
 - Add a smaller limit of columns for smaller screens
 - Option to make player 2 a Computer player
 - More animations (flying birds in the background and maybe another cloud)
+- change the win confetty animation with fireworks as it goes better with the theme and add sound for that
