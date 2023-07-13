@@ -199,7 +199,7 @@ function buildWall (e) {
   //     audioFile = new Audio(audioHref);
 //     //play audio
 //     audioFile.play();
-  
+  audioFileLine.pause();
   audioFileLine.play();
   // console.log(e);
   // get all the class list of the border
@@ -273,6 +273,7 @@ function buildWall (e) {
             housesbuilt++;
             pScore++;
             // play house complet sound
+            audioFileHComplete.pause();
             audioFileHComplete.play();
             // add current player class to the house
             houses[h].classList.add(`p${player}`);
