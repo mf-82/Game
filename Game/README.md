@@ -59,7 +59,7 @@ Its a game where players drow lines around a block to capture it
 ## Unsolved problems
 - Sun sunCycle and celebration divs do not scale all the way down when hight is long
 
-## Things I wanted to add
+## Features to add
 - Add a smaller limit of columns for smaller screens
 - Option to make player 2 a Computer player
 - More animations (flying birds in the background and maybe another cloud)
