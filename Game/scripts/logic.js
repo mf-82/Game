@@ -295,11 +295,13 @@ function buildWall (e) {
               if (document.getElementById(`p1Hcount`).innerText>document.getElementById(`p2Hcount`).innerText) {
               console.log(`Player 1 wins!`);
               document.getElementById("currentPlayer").innerText = `Player 1 wins!`;
+              document.getElementById("p1TotalWins").innerText++;
               
               }
               else if (document.getElementById(`p1Hcount`).innerText<document.getElementById(`p2Hcount`).innerText){
                 console.log(`Player 2 wins!`);
                 document.getElementById("currentPlayer").innerText = `Player 2 wins!`;
+                document.getElementById("p2TotalWins").innerText++;
               }
               else {
                 console.log(`It's a tie!`);
@@ -307,6 +309,8 @@ function buildWall (e) {
                 audioFileTie.play();
 
                 document.getElementById("currentPlayer").innerText = `It's a tie!`;
+                document.getElementById("Ties1").innerText++;
+                document.getElementById("Ties2").innerText++;
               }
               document.getElementById("currentPlayer").style.color = "purple";
               return;
@@ -356,30 +360,6 @@ function buildWall (e) {
       return;
     }
   }
-
-//     const audioHref = e.srcElement.attributes.href.nodeValue;
-//    //  console.log(audioHref);
-//    //  console.log(this.parentNode);
-
-//    //change the background color slightly to feel responsive
-//     document.body.style.background = "#000112";
-//    //return background to original color
-//     setTimeout(() => {
-//       document.body.style.background = "#000011";
-//     }, 250);
-
-//     //grab parent node
-//     const parentOfbutton = this.parentNode;
-//     //add class to parent node that adds head image and animates it
-//     parentOfbutton.classList.add("dpHead");
-//     //remove the head image after 12 seconds
-//     setTimeout(() => {
-//       parentOfbutton.classList.remove("dpHead");
-//     }, 12000);
-
-//     audioFile = new Audio(audioHref);
-//     //play audio
-//     audioFile.play();
 }
 
 function clearBord () {
@@ -433,7 +413,17 @@ function clearBord () {
     //remove win confiti
     document.querySelector(".win").style.display = "none";
 }
+}
 
+function clearWT(){
+  document.getElementById("p1TotalWins").innerText=0;
+  // console.log(document.getElementById("p1TotalWins").innerText);
+  document.getElementById("p2TotalWins").innerText=0;
+  // console.log(document.getElementById("p2TotalWins").innerText);
+  document.getElementById("Ties1").innerText=0;
+  // console.log(document.getElementById("Ties1").innerText);
+  document.getElementById("Ties2").innerText=0;
+  // console.log(document.getElementById("Ties2").innerText);
 }
 
  window.addEventListener("DOMContentLoaded", (event) => {
@@ -455,4 +445,7 @@ function clearBord () {
 
     //add listner to generate bord button
     document.querySelector("#generateBord").addEventListener("click", generateBord);
+
+    //add listner to clearWT button
+    document.getElementById("resetWinTieButton").addEventListener("click", clearWT);
   });

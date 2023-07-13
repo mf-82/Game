@@ -13,16 +13,36 @@
   <header>
     <!-- <div class="scoreBoard"> -->
       <div class="playerHouses ph1">
-        <h2>Player 1 Houses:</h2>
-        <div class="houseCount ph1" id="p1Hcount">0</div>
+        <div>
+          <h2>Player 1 Houses:</h2>
+          <div class="houseCount ph1" id="p1Hcount">0</div>
+        </div>
+        <div>
+          <h2>Wins</h2>
+          <div class="houseCount ph1" id="p1TotalWins">0</div>
+        </div>
+        <div>
+          <h2>Ties</h2>
+          <div class="houseCount ph1" id="Ties1">0</div>
+        </div>
       </div>
       <div id="logo">
         <h1 id="gameName">Houses</h1>
         <div id="currentPlayer"></div>
       </div>
       <div class="playerHouses ph2">
-        <h2>Player 2 Houses:</h2>
-        <div class="houseCount ph2" id="p2Hcount">0</div>
+        <div>
+          <h2>Player 2 Houses:</h2>
+          <div class="houseCount ph2" id="p2Hcount">0</div>
+        </div> 
+        <div>
+          <h2>Wins</h2>
+          <div class="houseCount ph2" id="p2TotalWins">0</div>
+        </div>
+        <div>
+          <h2>Ties</h2>
+          <div class="houseCount ph2" id="Ties2">0</div>
+        </div>
       </div>
     <!-- </div> -->
   </header>
@@ -30,7 +50,10 @@
     <div id="gameContainer">
     </div>
     <div class="buttons">
-      <div class="button" id="clearButton"><p>Clear Bord</p>
+      <div class="clear">
+        <div class="button" id="clearButton"><p>Clear Bord</p>
+        </div>
+        <div class="button" id="resetWinTieButton"><p>Clear W & Ts</div>
       </div>
       <div class="genBordContainer">
         <div class="inputContainer">
