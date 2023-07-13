@@ -89,7 +89,7 @@ header {
 
 .playerHouses>div {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 60px;
     /* flex-direction: row; */
 }
 
@@ -102,6 +102,9 @@ h2 {
     border-radius: 5px;
     min-height: 40px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 30px;
 }
 
@@ -239,7 +242,7 @@ h1 {
 
 .house {
     width: 100%;
-    min-height: 100px;
+    min-height: 70px;
 }
 
 .buttons {
@@ -322,7 +325,8 @@ h1 {
 
 @media (max-width: 800px) {
     body {
-        background-size: 100% 100%;  
+        background-size: 100% 100%;
+        /* min-width: 540px;   */
     }
     header :nth-child(2) { 
         order: -1;
