@@ -54,7 +54,7 @@ Its a game where players drow lines around a block to capture it
 ## Issues faced
 - Figuring out how borders adjaset to diffrent div count as belonging to that column or row
 - Auto generating logic to add data attributes for colums and rows
-- Finding images and sounds to use (more time consuming than expected/0
+- Finding images and sounds to use (more time consuming than expected
 
 ## Unsolved problems
 - Sun sunCycle and celebration divs do not scale all the way down when hight is long
