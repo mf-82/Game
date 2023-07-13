@@ -21,6 +21,7 @@ let audioFileCheer = new Audio("./sounds/crowd-cheer-ii-6263.mp3")
 let audioFileHComplete = new Audio("./sounds/bright-notifications-151766.mp3")
 let audioFilewin = new Audio("./sounds/success-fanfare-trumpets-6185.mp3")
 let audioFileTie = new Audio("./sounds/brass-fanfare-reverberated-146263.mp3")
+let audioFileClick = new Audio("./sounds/mouse-click-153941.mp3")
 
 // show initial player's turn
 document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
@@ -382,6 +383,8 @@ function buildWall (e) {
 }
 
 function clearBord () {
+  //play click button
+  audioFileClick.play();
   // stop all sounds
   audioFileCheer.pause();
   audioFileLine.pause();
