@@ -31,9 +31,11 @@ body {
     0% {background-color: white;}
     25% {background-color: white;}
     40% {background-color: orangered;}
-    55% {background-color: #000022;}
+    55% {background-color: #000022;
+        opacity: 0.2;}
     63% {opacity: 0.5;}
-    70% {background-color: #000022;}
+    70% {background-color: #000022;
+        opacity: 0.2;}
     85% {background-color: orange;}
     100% {background-color: white;}
 }
