@@ -63,4 +63,5 @@ Its a game where players drow lines around a block to capture it
 - Add a smaller limit of columns for smaller screens
 - Option to make player 2 a Computer player
 - More animations (flying birds in the background and maybe another cloud)
-- change the win confetty animation with fireworks as it goes better with the theme and add sound for that
+- Change the win confetty animation with fireworks as it goes better with the theme and add sound for that
+- Auto adjust block hight based on the number of rows
