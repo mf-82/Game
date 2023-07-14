@@ -7,6 +7,7 @@
   <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 <body>
+  <div id="gameScreen">
   <div class="sun"></div>
   <div class="cloud"></div>
   <div class="win"></div>
@@ -15,15 +16,15 @@
       <div class="playerHouses ph1">
         <div>
           <h2>P1Houses:</h2>
-          <div class="houseCount ph1"><div id="p1Hcount"><div id="p1Hcount">0</div></div></div>
+          <div class="houseCount ph1" id="p1Hcount">0</div>
         </div>
         <div>
           <h2>Wins:</h2>
-          <div class="houseCount ph1"><div id="p1TotalWins"><div id="p1TotalWins">0</div></div></div>
+          <div class="houseCount ph1" id="p1TotalWins">0</div>
         </div>
         <div>
           <h2>Ties:</h2>
-          <div class="houseCount ph1"><div id="Ties1">0</div></div>
+          <div class="houseCount ph1"  id="Ties1">0</div>
         </div>
       </div>
       <div id="logo">
@@ -66,6 +67,7 @@
       </div>
     </div>
   </main>
+  </div>
   <script src="scripts/logic.js"></script>
 </body>
 </html>
