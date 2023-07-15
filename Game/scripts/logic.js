@@ -1,5 +1,9 @@
 // current player var
 let player = Math.ceil(Math.random()*2);
+
+// player 2 or computer
+let computer = document.getElementById("comp").checked;
+
 // var to check if player playes again
 let anotherTurn = false;
 // player 1 and 2 scores
@@ -34,6 +38,7 @@ if (player==1) {
 else {
   document.getElementById("currentPlayer").innerText = `${p2Name}'s turn`;
 }
+//add current players color
 document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
 
 //get all the houses
@@ -80,7 +85,7 @@ function generateBord () {
   // loop through lands 
   // console.log(plots);
   let screenHeight = screen.height;
-  console.log(screenHeight);
+  // console.log(screenHeight);
   let gameAreaHeight =  screen.height / 1.894736842105263;
   let houseHeight = `${(gameAreaHeight - (10*(rowNum-1))) / rowNum}px`;
   document.documentElement.style.setProperty("--houseMinHeight", houseHeight);
@@ -90,7 +95,7 @@ function generateBord () {
 
   for (i=0; i<plots; i++){
     // add plots
-    console.log(i);
+    // console.log(i);
     let innerPlot = "";
     let plot = `<div class="land`;
     //if col == 1 add leftHouseLand to class
@@ -206,11 +211,12 @@ function generateBord () {
     // console.log(walls[i]);
     walls[i].addEventListener("click", buildWall);
   }
+  ComputerPlayer ();
 };
 
 function buildWall (e) {
   // e.preventDefault();
-  console.log("built");
+  // console.log("built");
   //playe writing sound
   //     audioFile = new Audio(audioHref);
 //     //play audio
@@ -268,25 +274,25 @@ function buildWall (e) {
 
     // get the number of walls each house has built
     let houseWalls = Number(houses[h].dataset.walls);
-    console.log(`House ${h}`);
+    // console.log(`House ${h}`);
     // go through all the columns the border belongs to
     for (let c=0; c < borderCol.length; c++) {
       // console.log(c);
-      console.log ("house is in col " +houseCol);
-      console.log("border col " +c + " is " +borderCol[c]);
+      // console.log ("house is in col " +houseCol);
+      // console.log("border col " +c + " is " +borderCol[c]);
       //go through all the rows the border belongs to
       for (let r=0; r < borderRow.length; r++) {
         // console.log(r);
         // console.log(houseCol == borderCol[c] && houseRow == borderRow[r]);
-        console.log ("house is in row " +houseRow);
-        console.log("border row " +r + " is " + borderRow[r]);
-        console.log(houseCol === borderCol[c] && houseRow === borderRow[r]);
+        // console.log ("house is in row " +houseRow);
+        // console.log("border row " +r + " is " + borderRow[r]);
+        // console.log(houseCol === borderCol[c] && houseRow === borderRow[r]);
         // check if the house is in the same column and row
         if (houseCol === borderCol[c] && houseRow === borderRow[r]){
           houseWalls++;
           //add the number of walls built for each house the border belongs to
           houses[h].dataset.walls = houseWalls;
-          console.log(`house ${h} has : ${houseWalls} walls built`);
+          // console.log(`house ${h} has : ${houseWalls} walls built`);
           // if the house has 4 walls built add to the houses built
           if (houseWalls == 4) {
             housesbuilt++;
@@ -300,8 +306,8 @@ function buildWall (e) {
             // add p score to screen
             document.getElementById(`p${player}Hcount`).innerText= pScore;
             // if all the houses have been built then check who has more houses and declare them the winner
-            console.log("houses built: " + housesbuilt);
-            console.log("all houses: " + houses.length);
+            // console.log("houses built: " + housesbuilt);
+            // console.log("all houses: " + houses.length);
             if (housesbuilt === houses.length) {
               //play win audio if not a tie
               if (!(document.getElementById(`p1Hcount`).innerText==document.getElementById(`p2Hcount`).innerText)) {
@@ -319,12 +325,12 @@ function buildWall (e) {
               
               }
               else if (document.getElementById(`p1Hcount`).innerText<document.getElementById(`p2Hcount`).innerText){
-                console.log(`Player 2 wins!`);
+                // console.log(`Player 2 wins!`);
                 document.getElementById("currentPlayer").innerText = `${p2Name} wins!`;
                 document.getElementById("p2TotalWins").innerText++;
               }
               else {
-                console.log(`It's a tie!`);
+                // console.log(`It's a tie!`);
                 // play tie sound
                 audioFileTie.play();
 
@@ -366,6 +372,8 @@ function buildWall (e) {
       console.log("player "+player+"'s turn");
       document.getElementById("currentPlayer").innerText = `${p2Name}'s turn`;
       document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
+      // check if its the computer's turn
+      ComputerPlayer ();
       return;
     }
   } else {
@@ -373,13 +381,15 @@ function buildWall (e) {
     // if not all 4 walls are built and current player plays again
     if (anotherTurn) {
       anotherTurn = false;
+      // check if its the computer's turn
+      ComputerPlayer ();
       return;
     }
     // else if not all 4 wals built then switch players
     else{
       document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
       player = 1;
-      console.log("player "+player+"'s turn");
+      // console.log("player "+player+"'s turn");
       document.getElementById("currentPlayer").innerText = `${p1Name}'s turn`;
       document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
       return;
@@ -387,8 +397,85 @@ function buildWall (e) {
   }
 }
 
+//computer player function
+function ComputerPlayer () {
+  computer = document.getElementById("comp").checked;
+  // console.log("Player 2 is computer " + computer);
+  if ((player==2) && (computer)) {
+    console.log("its the computer's turn");
+    let unbuiltWalls = document.getElementsByClassName("wall");
+    let aiRandomWall = Math.floor(Math.random()*unbuiltWalls.length);
+    // unbuiltWalls[aiRandomWall].click();
+    //check all the houses to 
+    for (let h=0; h < houses.length; h++) {
+      console.log(`house ${h} has : ${Number(houses[h].dataset.walls)} walls built`);
+      if (Number(houses[h].dataset.walls) === 3) {
+        console.log(`house${h} has 3 walls built` + (Number(houses[h].dataset.walls) === 3));
+        const houseCol = houses[h].dataset.col;
+        const houseRow = houses[h].dataset.row;
+        for (u=0; u < unbuiltWalls.length; u++) {
+          //  convert the data-row into an array
+          const borderCol = unbuiltWalls[u].dataset.col.split(",");
+          // convert the data-row into an array
+          const borderRow = unbuiltWalls[u].dataset.row.split(",");
+          // go through all the columns the border belongs to
+          for (let c=0; c < borderCol.length; c++) {
+            //go through all the rows the border belongs to
+            for (let r=0; r < borderRow.length; r++) {
+              // check if the house is in the same column and row
+              if (borderCol[c]==houseCol && borderRow[r]==houseRow){
+                // click the last wall for the house
+                unbuiltWalls[u].click();
+                return
+              }
+            }
+          }
+        }
+      }
+    }
+    //check all houses
+    for (let h=0; h < houses.length; h++) {
+      console.log(`house ${h} has : ${Number(houses[h].dataset.walls)} walls built`);
+      if (Number(houses[h].dataset.walls) < 2) {
+        console.log(`house${h} hasless than 2 walls built` + (Number(houses[h].dataset.walls) < 2));
+        const houseCol = houses[h].dataset.col;
+        const houseRow = houses[h].dataset.row;
+        for (u=0; u < unbuiltWalls.length; u++) {
+          //  convert the data-row into an array
+          const borderCol = unbuiltWalls[u].dataset.col.split(",");
+          // convert the data-row into an array
+          const borderRow = unbuiltWalls[u].dataset.row.split(",");
+          // check if the border is not shared by 2 columns
+          if (borderCol.length===1) {
+            // go through all the columns the border belongs to
+            for (let c=0; c < borderCol.length; c++) {
+              // check if the border is not shared by 2 rows
+              if (borderRow.length===1) {
+                //go through all the rows the border belongs to
+                for (let r=0; r < borderRow.length; r++) {
+                  // check if the house is in the same column and row
+                  if (borderCol[c]==houseCol && borderRow[r]==houseRow){
+                    // click the last wall for the house
+                    unbuiltWalls[u].click();
+                    return
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    unbuiltWalls[aiRandomWall].click()
+    return
+  }   
+}
+
+// function for clearing the bord but keeping win/tie score and layout
 function clearBord () {
 
+  // Uncheck
+  document.getElementById("comp").checked = false;
   // get player names again player names
   p1Name = document.getElementById("p1Name").innerText;
   p2Name = document.getElementById("p2Name").innerText;
@@ -451,6 +538,8 @@ function clearBord () {
 }
 
 function clearWT(){
+  //play click button
+  audioFileClick.play();
   document.getElementById("p1TotalWins").innerText=0;
   // console.log(document.getElementById("p1TotalWins").innerText);
   document.getElementById("p2TotalWins").innerText=0;
@@ -463,17 +552,22 @@ function clearWT(){
 
  window.addEventListener("DOMContentLoaded", (event) => {
     console.log("DOM fully loaded and parsed");
-    // grab all the a walls into an array
-    const walls = document.querySelectorAll(".wall");
+    // // grab all the a walls into an array
+    // const walls = document.querySelectorAll(".wall");
     // generate bord with defaut
     generateBord ();
     //run random cloud top % function
     cloudTopRand ();
-    // add listner to all the a links
-    for (i=0; i < walls.length; i++) {
-        // console.log(walls[i]);
-        walls[i].addEventListener("click", buildWall);
-    }
+    // // add listner to all the a links
+    // for (i=0; i < walls.length; i++) {
+    //     // console.log(walls[i]);
+    //     walls[i].addEventListener("click", buildWall);
+    // }
+    //run computerPlayer function to check if computer plays
+    // ComputerPlayer ();
+
+    // add event listener to checkbox
+    document.getElementById("comp").addEventListener("click", ComputerPlayer);
 
     // add listner to clear button
     document.querySelector("#clearButton").addEventListener("click", clearBord);
