@@ -23,8 +23,17 @@ let audioFilewin = new Audio("./sounds/success-fanfare-trumpets-6185.mp3")
 let audioFileTie = new Audio("./sounds/brass-fanfare-reverberated-146263.mp3")
 let audioFileClick = new Audio("./sounds/mouse-click-153941.mp3")
 
+// variables for player names
+let p1Name = document.getElementById("p1Name").innerText;
+let p2Name = document.getElementById("p2Name").innerText;
+
 // show initial player's turn
-document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+if (player==1) {
+  document.getElementById("currentPlayer").innerText = `${p1Name}'s turn`;
+}
+else {
+  document.getElementById("currentPlayer").innerText = `${p2Name}'s turn`;
+}
 document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
 
 //get all the houses
@@ -59,6 +68,8 @@ function generateBord () {
   rowNum = document.getElementById("rowInput").value;
   if (rowNum < 1) {
     rowNum = 1;
+  } else if (rowNum > 30) {
+    rowNum = 30;
   }
   let row = 1;
   // console.log(row);
@@ -68,6 +79,11 @@ function generateBord () {
   // console.log(plots);
   // loop through lands 
   // console.log(plots);
+  let screenHeight = screen.height;
+  console.log(screenHeight);
+  let gameAreaHeight =  screen.height / 1.894736842105263;
+  let houseHeight = `${(gameAreaHeight - (10*(rowNum-1))) / rowNum}px`;
+  document.documentElement.style.setProperty("--houseMinHeight", houseHeight);
 
   //clear inner htmal of game container
   document.getElementById("gameContainer").innerHTML = "";
@@ -211,6 +227,9 @@ function buildWall (e) {
   const borderRow = this.dataset.row.split(",");
   
   // console.log(border);
+  // get player names again player names
+  p1Name = document.getElementById("p1Name").innerText;
+  p2Name = document.getElementById("p2Name").innerText;
 
   // get current player score
   pScore = player === 1 ? p1Score : p2Score; 
@@ -294,14 +313,14 @@ function buildWall (e) {
               // setTimeout(function(){audioFileCheer.play()},1000);
               }
               if (document.getElementById(`p1Hcount`).innerText>document.getElementById(`p2Hcount`).innerText) {
-              console.log(`Player 1 wins!`);
-              document.getElementById("currentPlayer").innerText = `Player 1 wins!`;
+              // console.log(`Player 1 wins!`);
+              document.getElementById("currentPlayer").innerText = `${p1Name} wins!`;
               document.getElementById("p1TotalWins").innerText++;
               
               }
               else if (document.getElementById(`p1Hcount`).innerText<document.getElementById(`p2Hcount`).innerText){
                 console.log(`Player 2 wins!`);
-                document.getElementById("currentPlayer").innerText = `Player 2 wins!`;
+                document.getElementById("currentPlayer").innerText = `${p2Name} wins!`;
                 document.getElementById("p2TotalWins").innerText++;
               }
               else {
@@ -319,8 +338,13 @@ function buildWall (e) {
             // else if all 4 walls built but its not the last house then current player plays again
             else {
               anotherTurn = true;
-              console.log("player "+player+" playes again");
-              document.getElementById("currentPlayer").innerText = `Player ${player} playes again`;
+              // console.log("player "+player+" playes again");
+              if (player==1) {
+                document.getElementById("currentPlayer").innerText = `${p1Name} playes again`;
+              }
+              else {
+                document.getElementById("currentPlayer").innerText = `${p2Name} playes again`;
+              }
             }
           }
         }
@@ -340,7 +364,7 @@ function buildWall (e) {
       document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
       player = 2;
       console.log("player "+player+"'s turn");
-      document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+      document.getElementById("currentPlayer").innerText = `${p2Name}'s turn`;
       document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
       return;
     }
@@ -356,7 +380,7 @@ function buildWall (e) {
       document.getElementById("currentPlayer").classList.remove(`p${player}TextColor`);
       player = 1;
       console.log("player "+player+"'s turn");
-      document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+      document.getElementById("currentPlayer").innerText = `${p1Name}'s turn`;
       document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
       return;
     }
@@ -364,6 +388,11 @@ function buildWall (e) {
 }
 
 function clearBord () {
+
+  // get player names again player names
+  p1Name = document.getElementById("p1Name").innerText;
+  p2Name = document.getElementById("p2Name").innerText;
+
   //play click button
   audioFileClick.play();
   // stop all sounds
@@ -387,7 +416,12 @@ function clearBord () {
   // grab all walls into array
   const walls = document.querySelectorAll(".hWall, .vWall");
   // show initial player's turn
-  document.getElementById("currentPlayer").innerText = `Player ${player}'s turn`;
+  if (player==1) {
+    document.getElementById("currentPlayer").innerText = `${p1Name}'s turn`;
+  }
+  else {
+    document.getElementById("currentPlayer").innerText = `${p2Name}'s turn`;
+  }
   document.getElementById("currentPlayer").classList.add(`p${player}TextColor`);
   // add p score to screen
   document.getElementById(`p1Hcount`).innerText= p1Score;

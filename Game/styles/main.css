@@ -3,6 +3,7 @@
     --colNum: 3;
     --rowNum: 3;
     --cloudTopStart: 0;
+    --houseMinHeight: 70px;
 }
 
 body {
@@ -81,8 +82,8 @@ body {
 .win {
     display: none;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-image: url("../imgs/YGg4.gif");
     z-index: 0;
 }
@@ -174,12 +175,12 @@ main {
 
 .builtP1VWall {
     background-image: url("../imgs/P1\ pencil\ line\ v.png");
-    /* background-size: 100% 100%; */
+    background-size: 100% 100%;
     animation: drowV 0.5s linear;
 }
 .builtP2VWall {
     background-image: url("../imgs/P2\ pencil\ line\ v.png");
-    /* background-size: 100% 100%; */
+    background-size: 100% 100%;
     animation: drowV 0.5s linear;
 }
 
@@ -272,7 +273,7 @@ h1 {
 
 .house {
     width: 100%;
-    min-height: 70px;
+    min-height: var(--houseMinHeight);
 }
 
 .buttons {

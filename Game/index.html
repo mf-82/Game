@@ -14,8 +14,9 @@
   <header>
     <!-- <div class="scoreBoard"> -->
       <div class="playerHouses ph1">
+        <h2 class="playerName" id="p1Name" contenteditable="true">Player 1</h2>
         <div>
-          <h2>P1Houses:</h2>
+          <h2>Houses:</h2>
           <div class="houseCount ph1" id="p1Hcount">0</div>
         </div>
         <div>
@@ -32,8 +33,9 @@
         <div id="currentPlayer"></div>
       </div>
       <div class="playerHouses ph2">
+        <h2 class="playerName" id="p2Name" contenteditable="true">Player 2</h2>
         <div>
-          <h2>P2Houses:</h2>
+          <h2>Houses:</h2>
           <div class="houseCount ph2" id="p2Hcount">0</div>
         </div> 
         <div>
@@ -61,7 +63,7 @@
           <div class="colRowInput" id="col"># of columns</div>
           <input type="number" class="numInput" id="colInput" value="3" min="1" max="30">
           <div class="colRowInput" id="row"># of rows</div>
-          <input type="number" class="numInput" id="rowInput" value="3" min="1">
+          <input type="number" class="numInput" id="rowInput" value="3" min="1" max="30">
         </div>
         <div class="button" id="generateBord"><p>Generate Bord</p></div>
       </div>
