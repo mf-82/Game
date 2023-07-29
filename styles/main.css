@@ -1,0 +1,402 @@
+
+:root {
+    --colNum: 3;
+    --rowNum: 3;
+    --cloudTopStart: 0;
+    --houseMinHeight: 70px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#gameScreen {
+    /* height: 100vh; */
+    max-height: fit-content;
+    min-height: 100vh;
+    /* width: 100vw; */
+    background-image: url("../imgs/2304.w061.n005.156B.p15.156.jpg") ;
+    background-size: 100vw 100%;
+    background-repeat: no-repeat;  
+    margin: 0;
+    padding: 0;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    display: flex;
+    flex-direction: column;
+    /* align-content: space-between;
+    justify-content: space-between; */
+}
+
+.sun {
+    position: absolute;
+    width: 100vw;
+    /* height: 100vh; */
+    min-height: 100vh;
+    max-height:inherit;
+    /* background-color: #000022; */
+    opacity: 0.2; 
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    animation: sunColor 60s linear infinite;
+}
+
+@keyframes sunColor{
+    0% {background-color: white;}
+    25% {background-color: white;}
+    40% {background-color: orangered;}
+    55% {background-color: #000022;
+        opacity: 0.2;}
+    63% {opacity: 0.5;}
+    70% {background-color: #000022;
+        opacity: 0.2;}
+    85% {background-color: orange;}
+    100% {background-color: white;}
+}
+
+.cloud {
+    background-image: url("../imgs/cloudO.png");
+    background-size: 100%;
+    background-repeat: no-repeat; 
+    position: absolute;
+    top:  var(--cloudTopStart);
+    width: 30%;
+    height: 30%;
+    z-index: 0;
+    animation: cloudMove 80s linear infinite;
+}
+
+/* @keyframes cloudMove {
+    0% {left: -30%;}
+    100% {left: 110%;}
+} */
+
+@keyframes cloudMove {
+    0% {left: -30%;
+        /* top:percentage(random(100) / 100); */}
+    100% {left: 110%;}
+}
+
+.win {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("../imgs/YGg4.gif");
+    z-index: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    z-index: 2;
+}
+
+.playerHouses {
+    border: 5px solid gray;
+    border-radius: 5px;
+    padding: 5px;
+    opacity: 0.8;
+    
+}
+
+.playerHouses>div {
+    display: grid;
+    grid-template-columns: 1fr 70px;
+    /* flex-direction: row; */
+}
+
+h2 {
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.houseCount {
+    /* border: 4px solid blue; */
+    border-radius: 5px;
+    min-height: 20px;
+    text-align: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    font-size: 24px;
+    margin: 5px 0px;
+}
+
+main {
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 10px 0px;
+    /* align-content: space-between; */
+}
+
+.p1 {
+    background-color:teal;
+    border-radius: 5px;
+}
+
+.ph1 {
+    background-color: teal;
+}
+
+.p1TextColor {
+    color: teal;
+}
+
+.p2 {
+    background-color:brown;
+    border-radius: 5px;
+}
+
+.ph2 {
+    background-color:brown;
+}
+
+.p2TextColor {
+    color: brown;
+}
+
+.hWall {
+    width: 100%;
+    height: 10px;
+}
+
+.vWall  {
+    width: 10px;
+    height: 100%;
+}
+
+.builtP1VWall {
+    background-image: url("../imgs/P1\ pencil\ line\ v.png");
+    background-size: 100% 100%;
+    animation: drowV 0.5s linear;
+}
+.builtP2VWall {
+    background-image: url("../imgs/P2\ pencil\ line\ v.png");
+    background-size: 100% 100%;
+    animation: drowV 0.5s linear;
+}
+
+@keyframes drowV {
+    0% {height: 0;}
+    100% {height: 100%;}
+}
+
+.builtP1HWall {
+    background-image: url("../imgs/P1\ pencil\ line\ h.png");
+    background-size: 100% 100%;
+    animation: drowh 0.5s linear;
+}
+.builtP2HWall {
+    background-image: url("../imgs/P2\ pencil\ line\ h.png");
+    background-size: 100% 100%;
+    animation: drowh 0.5s linear;
+}
+
+@keyframes drowh {
+    0% {width: 0;}
+    100% {width: 100%;}
+}
+
+.built {
+    /* background-image: url("../imgs/16620.jpg"); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+h1 {
+    text-align: center;
+}
+
+#currentPlayer {
+    font-size: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
+#gameContainer {
+    background-color: white;
+    border: 10px grey solid;
+    display: grid;
+    grid-template-columns: repeat(var(--colNum), auto);
+    opacity: 0.9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: auto 5px;
+    /* width:auto; */
+}
+
+.leftHouseLand {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 10px auto 10px;
+}
+
+
+.otherHouseLand {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto 10px;
+    background-size: 100% 100%;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* background-color: black; */
+    background-image: url("../imgs/dot.png");
+
+}
+
+.wall:hover {
+    background-color: darkgray;
+}
+
+/* .p1Wall {
+    background-color: teal;
+}
+
+.p2Wall {
+    background-color: brown;
+} */
+
+.house {
+    width: 100%;
+    min-height: var(--houseMinHeight);
+}
+
+.buttons {
+    display: flex;
+    /* grid-template-columns: 1fr 1fr; */
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+}
+
+.clear {
+    display: flex;
+}
+
+.button {
+    display: flex;
+    margin: 10px;
+    border: 2px gray solid;
+    /* min-width: 100px;
+    max-width: 200px;
+    min-height: 40px;
+    max-height: 80px; */
+    min-width: 150px;
+    max-height: 30px;
+    background-color: darkgray;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    position: relative;
+}
+
+.button p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button:hover {
+    top: -2px;
+    left: -2px;
+    background-color: gray;
+    border-color: darkgray;
+    font-size: 25x;
+}
+
+.button:active {
+    top: 2px;
+    left: 2px;
+    background-color: rgb(67, 66, 66);
+    font-size: 30x;
+}
+
+#clearButton {
+    color: red;
+}
+#clearButton:hover {
+    color: brown;
+}
+
+.numInput {
+    margin: 5px;
+    max-width: 50px;
+    max-height: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.colRowInput {
+    margin: 5px;
+}
+
+.genBordContainer {
+    display: flex;
+}
+
+.inputContainer {
+    display: flex;
+    align-items: center;
+}
+
+@media (max-width: 800px) {
+    /* body {
+        background-size: 100% 100%;
+    } */
+    
+    div {
+        font-size: 11px;
+    }
+    #currentPlayer {
+        font-size: 20px;
+        padding: 4px;
+    }
+    .houseCount {
+        font-size: 10px;
+    }
+    .button p {
+        font-size: 15px;
+    }
+    .numInput {
+        font-size: 15px;
+    }
+    #gameName {
+        margin: 5px;
+    }
+    header :nth-child(2) { 
+        order: -1;
+        flex: 100%;
+    }
+    header {
+        flex-wrap: wrap;
+    }
+    .playerHouses :nth-child(2){
+        order: +1;
+    }
+    .genBordContainer {
+        flex-direction: column;
+    }
+    .clear {
+        flex-direction: column;
+    }
+    #gameScreen {
+        background-size: 100vw 100%;
+        /* height: fit-content; */
+        /* background-repeat: repeat; */
+    }
+}

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Houses</title>
+  <link href="http://fonts.googleapis.com/css?family=Exo+2:400,300,200,900,700,600,500" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="styles/main.css">
+</head>
+<body>
+  <div id="gameScreen">
+  <div class="sun"></div>
+  <div class="cloud"></div>
+  <div class="win"></div>
+  <header>
+    <!-- <div class="scoreBoard"> -->
+      <div class="playerHouses ph1">
+        <h2 class="playerName" id="p1Name" contenteditable="true">Player 1</h2>
+        <div>
+          <h2>Houses:</h2>
+          <div class="houseCount ph1" id="p1Hcount">0</div>
+        </div>
+        <div>
+          <h2>Wins:</h2>
+          <div class="houseCount ph1" id="p1TotalWins">0</div>
+        </div>
+        <div>
+          <h2>Ties:</h2>
+          <div class="houseCount ph1"  id="Ties1">0</div>
+        </div>
+      </div>
+      <div id="logo">
+        <h1 id="gameName">Houses</h1>
+        <div id="currentPlayer"></div>
+      </div>
+      <div class="playerHouses ph2">
+        <h2 class="playerName" id="p2Name" contenteditable="true">Player 2</h2>
+        <div>
+          <h2>Houses:</h2>
+          <div class="houseCount ph2" id="p2Hcount">0</div>
+        </div> 
+        <div>
+          <h2>Wins:</h2>
+          <div class="houseCount ph2" id="p2TotalWins">0</div>
+        </div>
+        <div>
+          <h2>Comp:</h2>
+          <input type="checkbox" class="houseCount ph2" id="comp" value="computer">
+        </div>
+      </div>
+    <!-- </div> -->
+  </header>
+  <main>
+    <div id="gameContainer">
+    </div>
+    <div class="buttons">
+      <div class="clear">
+        <div class="button" id="clearButton"><p>Clear Bord</p>
+        </div>
+        <div class="button" id="resetWinTieButton"><p>Clear W & Ts</div>
+      </div>
+      <div class="genBordContainer">
+        <div class="inputContainer">
+          <div class="colRowInput" id="col"># of columns</div>
+          <input type="number" class="numInput" id="colInput" value="3" min="1" max="30">
+          <div class="colRowInput" id="row"># of rows</div>
+          <input type="number" class="numInput" id="rowInput" value="3" min="1" max="30">
+        </div>
+        <div class="button" id="generateBord"><p>Generate Bord</p></div>
+      </div>
+    </div>
+  </main>
+  </div>
+  <script src="scripts/logic.js"></script>
+</body>
+</html>
