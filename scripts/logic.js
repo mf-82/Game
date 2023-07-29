@@ -85,8 +85,21 @@ function generateBord () {
   // loop through lands 
   // console.log(plots);
   let screenHeight = screen.height;
+  let screenWidth = window.innerWidth;
+  // 510 px hight needed for big screens 
   // console.log(screenHeight);
-  let gameAreaHeight =  screen.height / 1.894736842105263;
+  // console.log(screenWidth);
+  // console.log(screenWidth > 800);
+  // dynamically resize game area
+  let gameAreaHeight = 300;
+  if ( screenWidth > 800) {
+    gameAreaHeight = screen.height - 510;
+  }
+  // 599 px hight needed for small screens
+  else {
+    gameAreaHeight = screen.height - 609;
+  }
+
   let houseHeight = `${(gameAreaHeight - (10*(rowNum-1))) / rowNum}px`;
   document.documentElement.style.setProperty("--houseMinHeight", houseHeight);
 

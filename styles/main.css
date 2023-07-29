@@ -358,6 +358,26 @@ h1 {
     /* body {
         background-size: 100% 100%;
     } */
+    
+    div {
+        font-size: 11px;
+    }
+    #currentPlayer {
+        font-size: 20px;
+        padding: 4px;
+    }
+    .houseCount {
+        font-size: 10px;
+    }
+    .button p {
+        font-size: 15px;
+    }
+    .numInput {
+        font-size: 15px;
+    }
+    #gameName {
+        margin: 5px;
+    }
     header :nth-child(2) { 
         order: -1;
         flex: 100%;
