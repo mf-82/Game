@@ -60,7 +60,7 @@ body {
     background-image: url("../imgs/cloudO.png");
     background-size: 100%;
     background-repeat: no-repeat; 
-    position: absolute;
+    position: fixed;
     top:  var(--cloudTopStart);
     width: 30%;
     height: 30%;
