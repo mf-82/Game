@@ -16,7 +16,7 @@ body {
 #gameScreen {
     /* height: 100vh; */
     max-height: fit-content;
-    min-height: 100vh;
+    height: 100vh;
     /* width: 100vw; */
     background-image: url("../imgs/2304.w061.n005.156B.p15.156.jpg") ;
     background-size: 100vw 100%;
